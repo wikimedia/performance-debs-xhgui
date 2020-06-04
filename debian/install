@@ -1,0 +1,2 @@
+src config webroot usr/share/xhgui
+debian/autoload.php usr/share/xhgui/vendor

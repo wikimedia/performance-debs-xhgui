@@ -1,0 +1,3 @@
+The Debianized version of XHGui uses MariaDB instead of MongoDB, and
+Apache instead of Nginx.  Some of the included examples from the
+original source thus may not be relevant.

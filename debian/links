@@ -1,0 +1,6 @@
+usr/share/javascript/bootstrap/js/boostrap.js usr/share/xhgui/webroot/js/bootstrap.js
+usr/share/javascript/bootstrap/js/boostrap.min.js usr/share/xhgui/webroot/js/bootstrap.min.js
+usr/share/javascript/jquery/jquery.js usr/share/xhgui/webroot/js/jquery.js
+usr/share/javascript/jquery-tablesorter/js/jquery.tablesorter.js usr/share/xhgui/webroot/js/jquery.tablesorter.js
+var/cache/xhgui usr/share/xhgui/cache
+etc/xhgui/config.php usr/share/xhgui/config/config.php

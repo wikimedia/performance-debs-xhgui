@@ -1,0 +1,27 @@
+#!/usr/bin/make -f
+include /usr/share/dpkg/default.mk
+
+#DH_VERBOSE = 1
+
+%:
+	dh $@ --with=phpcomposer --with=apache2
+
+override_dh_auto_build:
+	dh_auto_build $@
+	phpab --output src/autoload.php src
+
+override_dh_fixperms:
+	dh_fixperms
+	find debian/xhgui/usr/share/xhgui -type f -exec chmod a-x '{}' ';'
+
+override_dh_auto_test:
+	dh_auto_test $@
+ifeq (,$(findstring nocheck, $(DEB_BUILD_OPTIONS)))
+#	phpunit --bootstrap=vendor/autoload.php
+else
+	@echo "** tests disabled"
+endif
+
+override_dh_auto_clean:
+	dh_auto_clean $@
+	rm -f src/autoload.php

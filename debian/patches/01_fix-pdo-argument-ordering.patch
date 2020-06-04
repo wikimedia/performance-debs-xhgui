@@ -1,0 +1,15 @@
+Description: Fix PDO argument ordering
+
+--- xhgui-0.9.0-1.orig/src/Xhgui/ServiceContainer.php
++++ xhgui-0.9.0-1/src/Xhgui/ServiceContainer.php
+@@ -85,8 +85,8 @@ class Xhgui_ServiceContainer extends Pim
+         $this['pdo'] = $this->share(function ($c) {
+             return new PDO(
+                 $c['config']['pdo']['dsn'],
+-                $c['config']['pdo']['pass'],
+-                $c['config']['pdo']['user']
++                $c['config']['pdo']['user'],
++                $c['config']['pdo']['pass']
+             );
+         });
+ 

@@ -1,0 +1,16 @@
+Source: xhgui
+Section: php
+Priority: optional
+Maintainer: Dave Pifke <dpifke@wikimedia.org>
+Build-Depends: debhelper (>= 10), phpab, phpunit, pkg-php-tools, apache2-dev
+Standards-Version: 4.4.0
+Vcs-Git: https://gerrit.wikimedia.org/r/performance/debs/xhgui
+
+Package: xhgui
+Architecture: all
+Depends: apache2 | httpd, ${phpcomposer:Debian-require}, libjs-bootstrap, libjs-jquery, libjs-jquery-tablesorter, ${misc:Depends}
+Suggests: ${phpcomposer:Debian-suggest}
+Recommends: ${misc:Recommends}
+Description: ${phpcomposer:description}
+ XHGui takes profiling information from XHProf and provides a
+ convenient GUI for working with it.

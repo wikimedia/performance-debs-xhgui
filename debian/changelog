@@ -1,0 +1,5 @@
+xhgui (0.9.0-1-wmf1) buster-wikimedia; urgency=low
+
+  * Initial packaging for Debian.
+
+ -- Dave Pifke <dpifke@wikimedia.org>  Tue, 02 Jun 2020 14:32:10 -0700
