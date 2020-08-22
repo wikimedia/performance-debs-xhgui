@@ -2,7 +2,7 @@
 /**
  * Default configuration for XHGui.
  *
- * To change these, create a called `config.php` file in the same directory,
+ * To change these, create a file called `config.php` file in the same directory
  * and return an array from there with your overriding settings.
  */
 
@@ -17,14 +17,21 @@ return array(
     //     # to reduce locking problems (eg uniqid, time ...)
     //     'save.handler.filename' => __DIR__.'/../data/xhgui_'.date('Ymd').'.dat',
     //
-    'save.handler' => 'mongodb',
+    'save.handler' => getenv('XHGUI_SAVE_HANDLER') ?: 'mongodb',
 
     'pdo' => array(
-        'dsn' => null,
-        'user' => null,
-        'pass' => null,
-        'table' => 'results'
+        'dsn' => getenv('XHGUI_PDO_DSN') ?: null,
+        'user' => getenv('XHGUI_PDO_USER') ?: null,
+        'pass' => getenv('XHGUI_PDO_PASS') ?: null,
+        'table' => getenv('XHGUI_PDO_TABLE') ?: 'results'
     ),
+
+    // If defined, add imports via upload (/run/import) must pass token parameter with this value
+    'upload.token' => getenv('XHGUI_UPLOAD_TOKEN') ?: '',
+
+    // Add this path prefix to all links and resources
+    // If this is not defined, auto-detection will try to find it itself
+    'path.prefix' => null,
 
     // Database options for MongoDB.
     //
@@ -39,6 +46,7 @@ return array(
     'db.host' => getenv('XHGUI_MONGO_HOST') ?: 'mongodb://127.0.0.1:27017',
     'db.db' => getenv('XHGUI_MONGO_DATABASE') ?: 'xhprof',
     'db.options' => array(),
+    'db.driverOptions' => array(),
     'run.view.filter.names' => array(
         'Zend*',
         'Composer*',
@@ -90,6 +98,11 @@ return array(
     //
     // NOTE: Only applies to using the external/header.php include.
     'profiler.skip_built_in' => false,
+
+    // Setup timezone for date formatting
+    // Example: 'UTC', 'Europe/Tallinn'
+    // If left empty, php default will be used (php.ini or compiled in default)
+    'timezone' => '',
 
     // Date format used when browsing XHGui pages.
     //

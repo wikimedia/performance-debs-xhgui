@@ -44,6 +44,10 @@ class Xhgui_ServiceContainer extends Pimple
         };
 
         $this['app'] = $this->share(function ($c) {
+            if ($c['config']['timezone']) {
+                date_default_timezone_set($c['config']['timezone']);
+            }
+
             $app = new Slim($c['config']);
 
             // Enable cookie based sessions
@@ -76,7 +80,10 @@ class Xhgui_ServiceContainer extends Pimple
             if (empty($config['db.options'])) {
                 $config['db.options'] = array();
             }
-            $mongo = new MongoClient($config['db.host'], $config['db.options']);
+            if (empty($config['db.driverOptions'])) {
+                $config['db.driverOptions'] = array();
+            }
+            $mongo = new MongoClient($config['db.host'], $config['db.options'], $config['db.driverOptions']);
             $mongo->{$config['db.db']}->results->findOne();
 
             return $mongo->{$config['db.db']};
@@ -85,8 +92,8 @@ class Xhgui_ServiceContainer extends Pimple
         $this['pdo'] = $this->share(function ($c) {
             return new PDO(
                 $c['config']['pdo']['dsn'],
-                $c['config']['pdo']['pass'],
-                $c['config']['pdo']['user']
+                $c['config']['pdo']['user'],
+                $c['config']['pdo']['pass']
             );
         });
 
@@ -145,7 +152,7 @@ class Xhgui_ServiceContainer extends Pimple
         };
 
         $this['importController'] = function ($c) {
-            return new Xhgui_Controller_Import($c['app'], $c['saver']);
+            return new Xhgui_Controller_Import($c['app'], $c['saver'], $c['config']['upload.token']);
         };
     }
 
