@@ -1,3 +1,11 @@
+xhgui (0.12.0-2-wmf1) buster-wikimedia; urgency=medium
+
+  * Update to latest upstream.  Includes upstreamed PDO fixes and
+    Prometheus exporter.
+  * Added the MongoDB-to-MariaDB migration script used at WMF to examples.
+
+ -- Dave Pifke <dpifke@wikimedia.org>  Mon, 24 Aug 2020 18:41:45 -0700
+
 xhgui (0.9.0-1-wmf1) buster-wikimedia; urgency=low
 
   * Initial packaging for Debian.
